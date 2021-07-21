@@ -1,0 +1,60 @@
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    maven {
+        url "https://maven.pkg.jetbrains.space/sevenfacette/p/sevenfacette/sevenfacette"
+        credentials {
+            username = "85dcdf4c-d6cd-486f-85d3-654904e1cf22"
+            password = "365171aab3c77e6aa2016b73c29ba738280dd96e94dddfc15e45ef65ffbcec5b"
+        }
+    }
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.1.0'
+
+
+    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.7.2'
+    implementation group: 'org.junit.platform', name: 'junit-platform-console', version: '1.7.2'
+    implementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.2'
+
+
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    implementation "de.p7s1.qa.sevenfacette:core-jvm:1.2.0"
+    implementation 'com.microsoft.playwright:playwright:1.11.0'
+
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.9.0'
+    implementation 'com.amazonaws:aws-lambda-java-events-sdk-transformer:3.0.4'
+    implementation 'com.amazonaws:aws-lambda-java-log4j2:1.2.0'
+    implementation 'com.amazonaws:aws-lambda-java-runtime-interface-client:1.1.0'
+    implementation 'com.amazonaws:aws-lambda-java-serialization:1.0.0'
+}
+
+task copyRuntimeDependencies(type: Copy) {
+    from configurations.runtimeClasspath
+    into './opt/app'
+}
+
+build.dependsOn copyRuntimeDependencies
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += "$buildDir/generated/src/main/java"
+        }
+    }
+}
+

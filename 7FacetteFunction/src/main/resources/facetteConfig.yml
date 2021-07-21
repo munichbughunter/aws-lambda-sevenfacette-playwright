@@ -1,0 +1,11 @@
+sevenFacette:
+  log:
+    level: INFO
+  http:
+    connectionTimeout: 5000
+    connectionRequestTimeout: 5000
+    socketTimeout: 5000
+    clients:
+      apiClient:
+        url:
+          baseUrl: http://zippopotam.us
