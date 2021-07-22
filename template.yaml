@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  aws-lambda-sevenfacette-playwright
+
+  Sample SAM Template for custom-lambda-app
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 900
+    MemorySize: 10240
+
+Resources:
+  7FacetteFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Environment:
+        Variables:
+          PLAYWRIGHT_BROWSERS_PATH: /opt/app/ms-playwright/
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      PackageType: Image
+      Events:
+        TriggerTest:
+          Type: Api
+          Properties:
+            Path: /test
+            Method: post
+    Metadata:
+      DockerTag: 7facette-playwright-v1
+      DockerContext: ./7FacetteFunction
+      Dockerfile: Dockerfile
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  HelloWorldApi:
+    Description: "API Gateway endpoint URL for Prod stage for 7Facette function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/test/"
+  7FacetteFunction:
+    Description: "7Facette Lambda Function ARN"
+    Value: !GetAtt 7FacetteFunction.Arn
+  7FacetteFunctionIamRole:
+    Description: "Implicit IAM Role created for 7Facette function"
+    Value: !GetAtt 7FacetteFunctionRole.Arn
