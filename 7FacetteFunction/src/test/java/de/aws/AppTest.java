@@ -16,8 +16,7 @@ public class AppTest {
         String payload = "{\n" +
                 "    \"package\": \"de.aws.api\",\n" +
                 "    \"class\": \"DemoTest\",\n" +
-                "    \"method\": \"apiDemo\",\n" +
-                "    \"browser\": \"chromium\"\n" +
+                "    \"method\": \"apiDemo\"\n" +
                 "}";
 
         APIGatewayProxyRequestEvent inputEvent = new APIGatewayProxyRequestEvent();
@@ -38,9 +37,8 @@ public class AppTest {
 
         String payload = "{\n" +
                 "    \"package\": \"de.aws.api\",\n" +
-                "    \"class\": \"DemoTest\",\n" +
-                "    \"method\": \"\",\n" +
-                "    \"browser\": \"chromium\"\n" +
+                "    \"class\": \"\",\n" +
+                "    \"method\": \"\"\n" +
                 "}";
 
         APIGatewayProxyRequestEvent inputEvent = new APIGatewayProxyRequestEvent();
@@ -60,10 +58,9 @@ public class AppTest {
         App app = new App();
 
         String payload = "{\n" +
-                "    \"package\": \"de.aws.ui\",\n" +
+                "    \"package\": \"de.aws.api\",\n" +
                 "    \"class\": \"\",\n" +
-                "    \"method\": \"\",\n" +
-                "    \"browser\": \"chromium\"\n" +
+                "    \"method\": \"\"\n" +
                 "}";
 
         APIGatewayProxyRequestEvent inputEvent = new APIGatewayProxyRequestEvent();
@@ -83,10 +80,9 @@ public class AppTest {
         App app = new App();
 
         String payload = "{\n" +
-                "    \"package\": \"de.aws\",\n" +
+                "    \"package\": \"de.aws.api\",\n" +
                 "    \"class\": \"\",\n" +
-                "    \"method\": \"\",\n" +
-                "    \"browser\": \"chromium\"\n" +
+                "    \"method\": \"\"\n" +
                 "}";
 
         APIGatewayProxyRequestEvent inputEvent = new APIGatewayProxyRequestEvent();
@@ -106,10 +102,9 @@ public class AppTest {
         App app = new App();
 
         String payload = "{\n" +
-                "    \"package\": \"de.aws.ui\",\n" +
+                "    \"package\": \"de.aws.api\",\n" +
                 "    \"class\": \"\",\n" +
-                "    \"method\": \"\",\n" +
-                "    \"browser\": \"chromium\"\n" +
+                "    \"method\": \"\"\n" +
                 "}";
 
         APIGatewayProxyRequestEvent inputEvent = new APIGatewayProxyRequestEvent();
@@ -129,10 +124,9 @@ public class AppTest {
         App app = new App();
 
         String payload = "{\n" +
-                "    \"package\": \"de.aws.ui\",\n" +
+                "    \"package\": \"de.aws.api\",\n" +
                 "    \"class\": \"\",\n" +
-                "    \"method\": \"\",\n" +
-                "    \"browser\": \"webkit\"\n" +
+                "    \"method\": \"\"\n" +
                 "}";
 
         APIGatewayProxyRequestEvent inputEvent = new APIGatewayProxyRequestEvent();
