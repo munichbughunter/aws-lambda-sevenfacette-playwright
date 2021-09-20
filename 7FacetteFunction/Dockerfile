@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright/java:focal
+FROM mcr.microsoft.com/playwright/java:focal as build-image
 
 ARG SCRATCH_DIR=/opt/app
 
@@ -16,12 +16,20 @@ COPY settings.gradle ./
 
 RUN ./gradlew --project-cache-dir $SCRATCH_DIR/gradle-cache -Dsoftware.amazon.aws.lambdabuilders.scratch-dir=$SCRATCH_DIR --init-script $SCRATCH_DIR/lambda-build-init.gradle build
 
-RUN cp -r /opt/app/*/build/libs/* /opt/app
-RUN cp -r $SCRATCH_DIR/*/build/distributions/lambda-build/META-INF /opt/app
-RUN cp -r $SCRATCH_DIR/*/build/distributions/lambda-build/de/* /opt/app
-RUN cp -r /ms-playwright/* /opt/app/ms-playwright/
+FROM mcr.microsoft.com/playwright/java:focal
 
-RUN rm -rf /ms-playwright/
+ARG SCRATCH_DIR=/opt/app
+RUN mkdir ${SCRATCH_DIR}
+RUN mkdir ./de
+RUN mkdir ./de/aws
+RUN mkdir /opt/app/ms-playwright
+
+COPY --from=build-image /opt/app/ /opt/app
+COPY --from=build-image /opt/app/*/build/libs/* /opt/app
+COPY --from=build-image $SCRATCH_DIR/*/build/distributions/lambda-build/META-INF /opt/app
+COPY --from=build-image $SCRATCH_DIR/*/build/distributions/lambda-build/de/* /opt/app
+COPY --from=build-image /ms-playwright/* /opt/app/ms-playwright/
+
 RUN rm -rf $SCRATCH_DIR/*/build/distributions/lambda-build/de/
 RUN rm -rf $SCRATCH_DIR/*/build/distributions/lambda-build/META-INF
 RUN rm -rf /opt/app/*/build/libs/
