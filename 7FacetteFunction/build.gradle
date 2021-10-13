@@ -20,13 +20,14 @@ dependencies {
     implementation 'com.amazonaws:aws-lambda-java-events:3.1.0'
 
 
-    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.7.2'
-    implementation group: 'org.junit.platform', name: 'junit-platform-console', version: '1.7.2'
-    implementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.2'
+    implementation 'org.junit.platform:junit-platform-launcher:1.8.1'
+    implementation group: 'org.junit.platform', name: 'junit-platform-console', version: '1.8.1'
+    implementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.8.1'
 
 
     implementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     implementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'org.junit.platform:junit-platform-launcher:1.8.1'
 
     implementation "de.p7s1.qa.sevenfacette:core-jvm:1.2.0"
     implementation 'com.microsoft.playwright:playwright:1.11.0'
