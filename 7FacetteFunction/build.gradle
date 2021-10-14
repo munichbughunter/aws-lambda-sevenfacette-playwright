@@ -27,9 +27,10 @@ dependencies {
 
     implementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     implementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'org.junit.platform:junit-platform-launcher:1.8.1'
 
-    implementation "de.p7s1.qa.sevenfacette:core-jvm:1.2.0"
-    implementation 'com.microsoft.playwright:playwright:1.11.0'
+    implementation "de.p7s1.qa.sevenfacette:core-jvm:1.4.0"
+    implementation 'com.microsoft.playwright:playwright:1.15.0'
 
     implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
     implementation 'com.amazonaws:aws-lambda-java-events:3.9.0'

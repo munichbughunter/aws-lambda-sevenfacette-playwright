@@ -51,4 +51,9 @@ public class Request {
     public void setBrowser(String browser) {
         this.browser = browser;
     }
+
+    @Override
+    public String toString() {
+        return "[ TestPackage: " + getTestPackage() + " TestClass: " + getTestClass() + " TestMethod: " + getTestMethod() + "]";
+    }
 }

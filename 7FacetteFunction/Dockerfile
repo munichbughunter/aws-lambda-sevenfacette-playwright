@@ -28,4 +28,4 @@ RUN rm -rf /opt/app/*/build/libs/
 
 ENTRYPOINT [ "/usr/bin/java", "-cp", "/opt/app/*", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]
 
-CMD ["de.aws.App::handleRequest"]
+CMD ["de.aws.LambdaTestHandler::handleRequest"]

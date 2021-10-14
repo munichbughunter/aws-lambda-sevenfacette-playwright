@@ -17,4 +17,12 @@ public class DemoTest {
         System.out.println(httpResponse.getStatus());
         Assertions.assertEquals(200, Objects.requireNonNull(httpResponse).getStatus());
     }
+
+    @Test
+    void apiDemoTwo() {
+        final GenericHttpClient apiHttpClient = HttpClientFactory.createClient("apiClient");
+        var httpResponse = apiHttpClient.get("/us/90210", new HttpHeader());
+        System.out.println(httpResponse.getStatus());
+        Assertions.assertEquals(200, Objects.requireNonNull(httpResponse).getStatus());
+    }
 }
